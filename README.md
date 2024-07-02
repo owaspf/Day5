@@ -225,10 +225,10 @@ openssl rsautl -verify -pubin -inkey clef1.pub -in test.sign
 ```
 Scellement operation
 ```
-openssl digest -sha256 -sign clef1 -out test.hash.sign test 
+openssl dgst -sha256 -sign clef1 -out test.hash.sign test 
 ```
 ```
-openssl digest -sha256 -verify clef1.pub  -signature test.hash.sign 
+openssl dgst -sha256 -verify clef1.pub  -signature test.hash.sign 
 ```
 
 
