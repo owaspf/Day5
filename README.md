@@ -147,20 +147,20 @@ openssl passwd -6 -salt <random>
 ```
 * Video 4 : Chiffrement Asymétrique avec RSA
 ```
-openssl genrsa -out cle 4096
+openssl genrsa -out clef 4096
 ```
 ```
 ls
 ```
 ```
-file cle
+file clef
 ```
 ```
-cat cle
+cat clef
 ```
 let's cipher the key
 ```
-openssl rsa -in cle -des3 -out clef1
+openssl rsa -in clef -des3 -out clef1
 ```
 ```
 ls
@@ -175,7 +175,7 @@ cat clef1
 ls
 ```
 ```
-openssl genrsa -des3 -out cletest 512
+openssl genrsa -des3 -out cleftest 512
 ```
 ```
 cat cletest
@@ -184,16 +184,16 @@ cat cletest
 ls
 ```
 ```
-openssl rsa -in clef -pubout -out cle.pub
+openssl rsa -in clef -pubout -out clef.pub
 ```
 ```
 ls
 ```
 ```
-openssl rsa -in clef1 -pubout -out cle1.pub
+openssl rsa -in clef1 -pubout -out clef1.pub
 ```
 ```
-diff cle.pub cle1.pub
+diff clef.pub clef1.pub
 ```
 ```
 cat test
@@ -215,13 +215,13 @@ openssl rsault -encrypt -pubin -inkey clef1.pub -in clef1 -out test3
 ```
 Signing and verifying
 ```
-openssl rsault -sign -inkey cle1 -in test -out test.sign
+openssl rsault -sign -inkey clef1 -in test -out test.sign
 ```
 ```
 cat test.sign
 ```
 ```
-openssl rsault -verify -pubin -inkey cle1.pub -in test.sign
+openssl rsault -verify -pubin -inkey clef1.pub -in test.sign
 ```
 Scellement operation
 ```
