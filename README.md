@@ -437,7 +437,7 @@ openssl enc -aes-256-cbc -salt -in LargeFile2.enc2 -out LargeFile4 -pass file:./
 ```
 diff LargeFile2 LargeFile4
 ```
-* ECC
+* Video 7 : ECC
 ```
 mkdir Openssl_EC
 ```
@@ -511,3 +511,85 @@ all entities having public key could verify
 ```
 openssl dgst -sha256 -verify Public.key -signature test.sign test
 ```
+* Video 8 : ECDH
+AT SERVER
+```
+openssl ecparam -name secp256k1 -genkey -out Private_serv.key
+```
+```
+openssl ec -in Private_serv.key -pubout -out Public_serv.key 
+```
+AT CLIENT
+```
+openssl ecparam -name secp256k1 -genkey -out Private_client.key
+```
+```
+openssl ec -in Private_client.key -pubout -out Public_client.key 
+```
+AT SERVER
+OTHER METHODE
+```
+python3 -m http.server 9000
+```
+```
+hostname -I
+```
+AT CLIENT 
+```
+wget root@<IP SERVER>:9000/Public_serv.key
+```
+```
+ls
+```
+Doying the same at the client
+AT CLIENT 
+```
+python3 -m http.server 8000
+```
+```
+hostname -I
+```
+AT SERVER
+```
+wget root@<IP CLIENT>:8000/Public_client.key
+```
+```
+ls
+```
+DERIVATION KEY AT  SERVER
+```
+openssl pkeyutil -derive -inkey Private_serv.key -peerkey Public_client.key -out Serv_client.key
+```
+```
+base64 Serv_client.key
+```
+DERIVATION KEY AT  CLIENT
+```
+openssl pkeyutil -derive -inkey Private_client.key -peerkey Public_serv.key -out Client_serv.key
+```
+```
+base64  Client_serv.key
+```
+AT CLIENT
+```
+echo "test test" > test
+```
+```
+openssl enc -aes256 -k $(base64 Client_serv.key) -e -in test -out test.enc -iter 2
+```
+```
+cat test.enc
+```
+Send by scp
+```
+scp test.enc root@<IP ADDR>:/<path of server>
+```
+AT SERVER 
+```
+openssl enc -aes256 -k $(base64 Serv_client.key) -d -in test.enc -out test -iter 2
+```
+
+
+
+
+
