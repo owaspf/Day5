@@ -335,6 +335,7 @@ openssl pkcs12 -export -out enveloppe_vers.pfx -in certif.serv -inkey serveur.ke
 ls
 ```
 you could export now the certificate
+Can't verify because we don't hava autority and it's not root certificate
 
 
 
