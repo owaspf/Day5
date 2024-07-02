@@ -588,6 +588,38 @@ AT SERVER
 ```
 openssl enc -aes256 -k $(base64 Serv_client.key) -d -in test.enc -out test -iter 2
 ```
+* Video 9, 10, 11 : Secure HTTPS
+```
+apt update
+```
+```
+apt install apache2
+```
+configure host
+```
+getent hosts
+```
+At broswer : 127.0.0.1
+```
+sudo nano var/www/html/index.html
+```
+Personalized data
+```
+sudo nano /etc/hosts/
+```
+change 127.0.0.1  localhost </br>
+by  127.0.0.1  localhost www.monsite.tn </br>
+For HTTP at : 
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+For HTTPS at : 
+```
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+```
+
+
+
 
 
 
