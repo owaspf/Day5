@@ -138,6 +138,7 @@ add space after Bonjour
 ```
 openssl dgst -sha256 test 
 ```
+Compute hash of password
 ```
 openssl passwd -6
 ```
