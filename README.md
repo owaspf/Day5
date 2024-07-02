@@ -429,10 +429,10 @@ METHODE 2 : USING HYBRID SOLUTION
 openssl rand -base64 32 > KEY 
 ```
 ```
-openssl enc -aes-256-cbc -salt -in LargeFile2 -out Largefile2.enc2 -pass file:./KEY -iter 2 
+openssl enc -aes-256-cbc -salt -in LargeFile2 -out LargeFile2.enc2 -pass file:./KEY -iter 2 
 ```
 ```
-openssl enc -aes-256-cbc -salt -in LargeFile2.enc -out Largefile4 -pass file:./KEY -iter 2 -d 
+openssl enc -aes-256-cbc -salt -in LargeFile2.enc2 -out LargeFile4 -pass file:./KEY -iter 2 -d 
 ```
 ```
 diff LargeFile2 LargeFile4
