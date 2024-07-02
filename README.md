@@ -651,9 +651,30 @@ openssl req -new -key Serveur.key -out Serveur.demande
 (section) : Section_Aserveure </br>
 [FQDN] : www.monsite.tn  </br>
 email : monsite@gmail.com  </br>
-
-
-
+</br>
+Copy at CA
+```
+scp Serveur.demande root@<IP of CA>:<Path of CA>
+```
+if connection refuse redo at CA systemctl restart ssh
+AT CA : 
+```
+openssl x509 -req -in Serveur.demande -out Serveur.cert -CA Aoutorite.cert -CAkey Autorite.key -CAcreateserial Serveur.cert
+```
+```
+openssl x509 -in Serveur.cert -subject -issuer -fingerprint -dates -noout
+```
+```
+scp Autorite.cert root@<IP of server):<Path of server>
+```
+AT SERVER
+```
+ls
+```
+Translate to PKCS12
+```
+openssl pkcs12 -export -in Serveur.cert -inkey Serveur.key -out Serveur.pfx -name " Le certificat du serveur"
+```
 
 
 
