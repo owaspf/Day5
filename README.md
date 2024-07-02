@@ -338,7 +338,10 @@ you could export now the certificate
 Can't verify because we don't hava autority and it's not root certificate
 * Video 6 : Chiffrement asymétrique d'un large fichier (too large to encrypt the file , key size)
 ```
-mkdir Openssl6
+mkdir openssl6
+```
+```
+cd openssl6
 ```
 ```
 man dd
@@ -416,7 +419,7 @@ openssl smime -encrypt -aes256 -in LargeFile2 -binary -outform PEM -out LargeFil
 cat LargeFile2.enc
 ```
 ```
-openssl smime -decrypt -aes256 -in LargeFile2.enc -binary -inform PEM -inkey Private.key cert -out LargeFile3
+openssl smime -decrypt -aes256 -in LargeFile2.enc -binary -inform PEM -inkey Private.key -out LargeFile3
 ```
 ```
 diff LargeFile2 LargeFile3
