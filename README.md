@@ -41,10 +41,29 @@ openssl x509 -in certificat -subject -issuer -dates -noout
 ```
 man  openssl | grep base64
 ```
+coding "bonjour" in base64
 ```
 echo "bonjour" | openssl base64
 ```
+Decoding in base 64
+```
+echo "Ym9uam91cgo="  | openssl base64 -d
+```
+Create file test using : 
+```
+cat <<h>> test
+```
+Tape ante terminate by h </br>
+```
+Bonjour
+```
+```
+h
+```
+Coding
+```
+openssl enc -base64 -in test
+```
 ```
 
 ```
-
