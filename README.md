@@ -37,7 +37,7 @@ See subject, issuer and dates
 ```  
 openssl x509 -in certificat -subject -issuer -dates -noout
 ```
-* Video 2 : Introduction OpenSSL
+* Video 2 : Chiffrement symétrique 
 ```
 man  openssl | grep base64
 ```
@@ -111,6 +111,38 @@ openssl enc -AES-256-CBC -a -in test1.enc -iter 2  -d
 ```
 ```
 openssl enc -AES-256-CBC -a -p -in test -iter 2 
+```
+* Video3 : Hachage du mot de passe avec SHA512
+```
+openssl help
+```
+```
+openssl dgst -sha512 test
+```
+```
+openssl dgst -sha1 test
+```
+```
+openssl dgst -sha256 test
+```
+```
+openssl dgst -sha256 test > test.hash
+```
+```
+cat test.hash
+```
+```
+nano test
+```
+add space after Bonjour
+```
+openssl dgst -sha256 test 
+```
+```
+openssl passwd -6
+```
+```
+openssl passwd -6 -salt <random>
 ```
 
 
