@@ -41,9 +41,9 @@ openssl x509 -in certificat -subject -issuer -dates -noout
 ```
 man  openssl | grep base64
 ```
-coding "bonjour" in base64
+coding "Bonjour" in base64
 ```
-echo "bonjour" | openssl base64
+echo "Bonjour" | openssl base64
 ```
 Decoding in base 64
 ```
@@ -55,15 +55,20 @@ cat <<h>> test
 ```
 Tape ante terminate by h </br>
 ```
-bonjour
+Bonjour
 ```
 ```
 h
 ```
-Coding
+Create file test  second method using echo and >
+```
+echo "Bonjour" > test2
+```
+Coding in base 64
 ```
 openssl enc -base64 -in test
 ```
+or
 ```
-
+openssl enc -base64 -in test2
 ```
