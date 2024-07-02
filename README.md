@@ -42,7 +42,7 @@ openssl x509 -in certificat -subject -issuer -dates -noout
 man  openssl | grep base64
 ```
 ```
-echo "bonjour" | openssl grep base64
+echo "bonjour" | openssl base64
 ```
 ```
 
