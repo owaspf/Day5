@@ -166,10 +166,10 @@ openssl rsa -in cle -des3 -out clef1
 ls
 ```
 ```
-file cle1
+file clef1
 ```
 ```
-cat cle1
+cat clef1
 ```
 ```
 ls
