@@ -228,18 +228,113 @@ Scellement operation
 openssl dgst -sha256 -sign clef1 -out test.hash.sign test 
 ```
 ```
-openssl dgst -sha256 -verify clef1.pub  -signature test.hash.sign 
+openssl dgst -sha256 -verify clef1.pub  -signature test.hash.sign test
 ```
-
-
-
-
-
-
-
-
-
-
+* Video5 : Création de notre propre PKI (create  auto sign certificate)
+Double terminal one by the CA and another one by the server
+At CA : 
+```
+mkdir openssl_cert
+```
+```
+cd openssl_cert
+```
+```
+openssl genrsa  -out autorite.key  -des3 4092
+```
+```
+ls
+```
+```
+cat autorite.ke
+```
+Let's create a certificate
+```
+openssl req -new x509 -days 3650  -key autorite.key certif.aut
+```
+eg
+[AU] : TN </br>
+[some-state] : TUNISIE  </br>
+(city) : Centre urbain  </br>
+(company) : ORG_autority  </br>
+(section) : technology  </br>
+[FQDN] : www.autorite.tn  </br>
+email : autorite@gmail.com  </br>
+```
+cat certif.aut
+```
+```
+openssl x509 -in certif.aut -text -noout
+```
+```
+openssl x509 -in certif.aut -subject -issuer -dates -noout
+```
+AT SERVER : </br>
+Another linux for serveur </br>
+Generate private key for the server
+```
+openssl genrsa -out serveur.key -des3 2048
+```
+Demandig certificate without x509
+```
+openssl req -new   -key autorite.key serveur.key -out demande.serv
+```
+eg
+[AU] : TN </br>
+[some-state] : TUNISIE  </br>
+(city) : Manar </br>
+(company) : ORG_server  </br>
+(section) : tech  </br>
+[FQDN] : www.serveur.tn </br>
+email : serveur@gmail.com  </br>
+```
+Avoid challange password
+```
+cat serveur.key
+```
+Not a certificate, verify it's can't be load there
+```
+openssl x509 -in serveur.serv -text -noout
+```
+make a pwd on terminal of autority certificate CA 
+```
+```
+scp demande.serv kali@<IP of CA>:<path of CA>
+```
+if connection refused restart, at the CA
+```
+sysemctl restart ssh
+```
+At CA : let's sign the demand
+```
+openssl x509 -req -in demande.serv -out certif.serv -CA certif.aut -CAkey autorite.key -CAcreateserial serial.ser
+```
+```
+ls
+```
+```
+cat certif.serv 
+```
+```
+openssl verify -CAfile certif.aut certif.serv
+```
+AT SERVER get the path by pwd </br>
+Sending certificate at server 
+```
+scp certif.* kali@<IP Addres of >:<path server>
+```
+if connection refuse , make as same
+AT server , verify by ls
+```
+ls
+```
+```
+openssl pkcs12 -export -out enveloppe_vers.pfx -in certif.serv -inkey serveur.key -name "le certif du serveur" 
+```
+```
+ls
+```
+you could export now the certificate
 
 
 
