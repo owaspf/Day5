@@ -617,6 +617,44 @@ For HTTPS at :
 ```
 sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
+**************************************************
+AT CA
+```
+openssl genrsa -des3 -out Autorite.key 2048
+```
+```
+openssl req -new -x509 -dayls 3650 -key Autorite.key -out Autorite.crt
+```
+[AU] : TN </br>
+[some-state] : TUNISIE  </br>
+(city) : Centre urbain  </br>
+(company) : ORG_cert  </br>
+(section) : Section_Autorite </br>
+[FQDN] : www.autorite.tn  </br>
+email : autorite@gmail.com  </br>
+
+AT SERVER
+```
+openssl -des3 -out Serveur.key 2048
+```
+ls
+```
+Create a demand of certificate (no days and no x509)
+```
+openssl req -new -key Serveur.key -out Serveur.demande
+```
+```
+[AU] : TN </br>
+[some-state] : TUNISIE  </br>
+(city) : Centre urbain  </br>
+(company) : ORG_serveur  </br>
+(section) : Section_Aserveure </br>
+[FQDN] : www.monsite.tn  </br>
+email : monsite@gmail.com  </br>
+
+
+
+
 
 
 
