@@ -27,15 +27,15 @@ openssl x509 -in certificat -text -noout
 ```
 See only subject
 ```  
-openssl x509 -in certificat -text -subject -noout
+openssl x509 -in certificat -subject -noout
 ```
 See subject and issuer
 ```  
-openssl x509 -in certificat -text -subject -issuer -noout
+openssl x509 -in certificat -subject -issuer -noout
 ```
 See subject, issuer and dates
 ```  
-openssl x509 -in certificat -text -subject -issuer -dates -noout
+openssl x509 -in certificat -subject -issuer -dates -noout
 ```
 
 
