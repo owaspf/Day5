@@ -336,7 +336,102 @@ ls
 ```
 you could export now the certificate
 Can't verify because we don't hava autority and it's not root certificate
-
-
-
+* Video 6 : Chiffrement asymétrique d'un large fichier (too large to encrypt the file , key size)
+```
+mkdir Openssl6
+```
+```
+man dd
+```
+```
+dd if=/dev/zero of=LargeFile bs=1024 count=0 seek=$[300*2]
+```
+```
+ll
+```
+or using fallocate
+```
+fallocate -l 600M LargeFile2
+```
+```
+ll
+```
+```
+rm -rf LargeFile
+```
+Method1 : Generate certificate
+```
+openssl req -x509 -nodes -days 100000 -newkey rsa:2048 -keyout Private.key -out cert
+```
+eg
+[AU] : TN </br>
+[some-state] : TUNISIE  </br>
+(city) : Centre urbail  </br>
+(company) : ORG_cert  </br>
+(section) : techwall  </br>
+[FQDN] : www.cert.tn  </br>
+email : cert@gmail.com  </br>
+```
+ls
+```
+```
+file Private.key
+```
+```
+cat Private.key
+```
+```
+file cert
+```
+```
+cat cert
+```
+Extract or parse public by certificate
+```
+openssl x509 -in cert -pubkey -noout > Public.key 
+```
+```
+ls Public.key
+```
+ERROR
+```
+openssl rsautl -encrypt -pubin -inkey Public.key -in LargeFile2 -out LargeFile2.enc
+```
+```
+touch test
+```
+```
+openssl rsautl -encrypt -pubin -inkey Public.key -in test -out test.enc
+```
+if file big than the lenght of key , not possible
+NOT POSSIBLE
+```
+openssl rsautl -encrypt -pubin -inke cert -in LargeFile2 -out LargeFile2.enc
+```
+METHOD 1 : USING AES by smime
+```
+openssl smime -encrypt -aes256 -in LargeFile2 -binary -outform PEM -out LargeFile2.enc cert
+```
+```
+cat LargeFile2.enc
+```
+```
+openssl smime -decrypt -aes256 -in LargeFile2.enc -binary -inform PEM -inkey Private.key cert -out LargeFile3
+```
+```
+diff LargeFile2 LargeFile3
+```
+METHODE 2 : USING HYBRID SOLUTION
+```
+openssl rand -base64 32 > KEY 
+```
+```
+openssl enc -aes-256-cbc -salt -in LargeFile2 -out Largefile2.enc2 -pass file:./KEY -iter 2 
+```
+```
+openssl enc -aes-256-cbc -salt -in LargeFile2.enc -out Largefile4 -pass file:./KEY -iter 2 -d 
+```
+```
+diff LargeFile2 LargeFile4
+```
 
