@@ -96,8 +96,9 @@ ls
 ```
 cat test.enc
 ```
+Erron on deciphering, binary not base64
 ```
-openssl enc -AES-256-CBC -in test.enc -iter 2
+openssl enc -AES-256-CBC -in test.enc -iter 2 -d
 ```
 ```
 openssl enc -AES-256-CBC -a -in test -iter 2 -out test1.enc
