@@ -1,6 +1,6 @@
 # Day5 : Cryptography; Data Corruption; haching; Authentication
 ## Analyzing OpenSSL certificate
-* Video 1 : 
+* Video 1 : Introduction OpenSSL
 ```  
 man openssl
 ```
@@ -37,5 +37,14 @@ See subject, issuer and dates
 ```  
 openssl x509 -in certificat -subject -issuer -dates -noout
 ```
+* Video 2 : Introduction OpenSSL
+```
+man openssl | grep base64
+```
+```
+echo "bonjour" | grep base64
+```
+```
 
+```
 
