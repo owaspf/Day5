@@ -72,3 +72,57 @@ or
 ```
 openssl enc -base64 -in test2
 ```
+```
+man openssl | grep cipher
+```
+```
+openssl list -cipher-algorithms
+```
+```
+rm test.cipher
+```
+```
+cat test
+```
+```
+openssl enc -AES-256-CBC -in test -out test.enc
+```
+```
+openssl enc -AES-256-CBC -in test -out test.enc -iter 2
+```
+```
+ls
+```
+```
+cat test.enc
+```
+```
+openssl enc -AES-256-CBC -in test.enc -iter 2
+```
+```
+openssl enc -AES-256-CBC -a -in test -iter 2 -out test1.enc
+```
+```
+cat test1.enc
+```
+```
+openssl enc -AES-256-CBC -a -in test1.enc -iter 2  -d
+```
+```
+openssl enc -AES-256-CBC -a -p -in test -iter 2 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
