@@ -675,6 +675,10 @@ Translate to PKCS12
 ```
 openssl pkcs12 -export -in Serveur.cert -inkey Serveur.key -out Serveur.pfx -name " Le certificat du serveur"
 ```
+****************************************************************************
+```
+curl www.monsite.local
+```
 
 
 
