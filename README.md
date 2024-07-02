@@ -55,7 +55,7 @@ cat <<h>> test
 ```
 Tape ante terminate by h </br>
 ```
-Bonjour
+bonjour
 ```
 ```
 h
