@@ -202,26 +202,26 @@ cat test
 openssl rsa -in clef -text  -noout
 ```
 ```
-openssl rsault -encrypt -pubin -inkey clef1.pub -in test -out test.enc
+openssl rsautl -encrypt -pubin -inkey clef1.pub -in test -out test.enc
 ```
 ```
 ls
 ```
 ```
-openssl rsault -decrypt -inkey clef1 -in test.enc
+openssl rsautl -decrypt -inkey clef1 -in test.enc
 ```
 ```
-openssl rsault -encrypt -pubin -inkey clef1.pub -in clef1 -out test3
+openssl rsautl -encrypt -pubin -inkey clef1.pub -in clef1 -out test3
 ```
 Signing and verifying
 ```
-openssl rsault -sign -inkey clef1 -in test -out test.sign
+openssl rsautl -sign -inkey clef1 -in test -out test.sign
 ```
 ```
 cat test.sign
 ```
 ```
-openssl rsault -verify -pubin -inkey clef1.pub -in test.sign
+openssl rsautl -verify -pubin -inkey clef1.pub -in test.sign
 ```
 Scellement operation
 ```
