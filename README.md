@@ -437,4 +437,77 @@ openssl enc -aes-256-cbc -salt -in LargeFile2.enc2 -out LargeFile4 -pass file:./
 ```
 diff LargeFile2 LargeFile4
 ```
-
+* ECC
+```
+mkdir Openssl_EC
+```
+```
+cd Openssl_EC
+```
+```
+openssl ecparam -list_curves
+```
+```
+openssl ecparam -genkey -name prime256v1 -out Private.key
+```
+```
+cat Private.key
+```
+```
+ll
+```
+Protect by key
+```
+openssl ec -in Private.key -des3 -out Private.key
+```
+seeying information 
+```
+openssl ec -in Private.key -text -noout
+```
+Calculate the key public by the private
+```
+openssl ec -in Private.key -pubout -out Public.key
+```
+```
+ll
+```
+```
+cat Public.key
+```
+```
+openssl req -x509 -days 365 -key Private.key -out cert
+```
+eg
+[AU] : TN </br>
+[some-state] : TUNISIE  </br>
+(city) : Centre urbain  </br>
+(company) : ORG_cert  </br>
+(section) : techwall  </br>
+[FQDN] : www.cert.tn  </br>
+email : cert@gmail.com  </br>
+```
+cat cert
+```
+```
+openssl x509 -in cert -text -noout
+```
+```
+openssl x509 -in cert -subject -issuer -dates -fingerprint -noout
+```
+```
+echo "bonjour" > test
+```
+Scellement
+```
+openssl dgst -sha256 -out test.sign -sign Private.key test
+```
+```
+file test.sign
+```
+```
+cat test.sign
+```
+all entities having public key could verify 
+```
+openssl dgst -sha256 -verify Public.key -signature test.sign test
+```
