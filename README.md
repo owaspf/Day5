@@ -232,7 +232,7 @@ openssl dgst -sha256 -sign clef1 -out test.hash.sign test
 openssl dgst -sha256 -verify clef1.pub  -signature test.hash.sign test
 ```
 * Video5 : Création de notre propre PKI (create  auto sign certificate)
-Double VM : one by the CA and another one by the server
+Double VM : one by the CA and another one by the server </br>
 At CA : 
 ```
 mkdir openssl_cert
@@ -247,7 +247,7 @@ openssl genrsa  -out autorite.key  -des3 4092
 ls
 ```
 ```
-cat autorite.ke
+cat autorite.key
 ```
 Let's create a certificate
 ```
