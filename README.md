@@ -565,18 +565,19 @@ ls
 ```
 DERIVATION KEY AT  SERVER
 ```
-openssl pkeyutil -derive -inkey Private_serv.key -peerkey Public_client.key -out Serv_client.key
+openssl pkeyutl -derive -inkey Private_serv.key -peerkey Public_client.key -out Serv_client.key
 ```
 ```
 base64 Serv_client.key
 ```
 DERIVATION KEY AT  CLIENT
 ```
-openssl pkeyutil -derive -inkey Private_client.key -peerkey Public_serv.key -out Client_serv.key
+openssl pkeyutl -derive -inkey Private_client.key -peerkey Public_serv.key -out Client_serv.key
 ```
 ```
 base64  Client_serv.key
 ```
+LET'S CIPHER </br>
 AT CLIENT
 ```
 echo "test test" > test
