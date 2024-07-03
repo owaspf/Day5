@@ -251,7 +251,7 @@ cat autorite.key
 ```
 Let's create a certificate
 ```
-openssl req -new x509 -days 3650  -key autorite.key certif.aut
+openssl req -new -x509 -days 3650  -key autorite.key -out certif.aut
 ```
 eg
 [AU] : TN </br>
@@ -278,7 +278,7 @@ openssl genrsa -out serveur.key -des3 2048
 ```
 Demandig certificate without x509
 ```
-openssl req -new   -key autorite.key serveur.key -out demande.serv
+openssl req -new   -key serveur.key -out demande.serv
 ```
 eg
 [AU] : TN </br>
@@ -304,11 +304,11 @@ scp demande.serv kali@<IP of CA>:<path of CA>
 ```
 if connection refused restart, at the CA
 ```
-sysemctl restart ssh
+systemctl restart ssh
 ```
 At CA : let's sign the demand
 ```
-openssl x509 -req -in demande.serv -out certif.serv -CA certif.aut -CAkey autorite.key -CAcreateserial serial.ser
+openssl x509 -req -in demande.serv -out certif.serv -CA certif.aut -CAkey autorite.key -CAcreateserial -CAserial serial.ser
 ```
 ```
 ls
@@ -317,8 +317,10 @@ ls
 cat certif.serv 
 ```
 ```
-openssl verify -CAfile certif.aut certif.serv
+openssl x509 -in certif.serv -issuer -dates -subject -noout
 ```
+
+
 AT SERVER get the path by pwd </br>
 Sending certificate at server 
 ```
@@ -329,6 +331,10 @@ AT server , verify by ls
 ```
 ls
 ```
+```
+openssl verify -CAfile certif.aut certif.serv
+```
+
 ```
 openssl pkcs12 -export -out enveloppe_vers.pfx -in certif.serv -inkey serveur.key -name "le certif du serveur" 
 ```
